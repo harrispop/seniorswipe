@@ -1,0 +1,46 @@
+name: seniorswipe
+description: A Senior Skill Marketplace
+version: 1.0.0+1
+
+environment:
+  sdk: ">=2.12.0 <4.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+  tcard: ^1.1.0
+  http: ^0.13.6
+  flutter_dotenv: ^5.0.2
+  confetti: ^0.6.0
+  image_picker: ^0.8.4+7
+  google_maps_flutter: ^2.1.2
+  flutter_map: ^4.0.0
+  latlong2: ^0.8.1
+  audioplayers: ^0.20.1
+  provider: ^6.0.0
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+
+flutter:
+  uses-material-design: true
+
+  assets:
+    - assets/logo.png
+    - assets/items/
+    - assets/data/listings.txt
+    - assets/fonts/
+    - assets/data/listings.txt
+    - assets/images/clothing.png
+    - assets/my_items/item0.png
+    - assets/my_items/item1.png
+    - assets/images/textbooks.png
+    - assets/images/furniture.png
+    - assets/images/tutoring.png
+    - assets/images/notes.png
+    - assets/sounds/button_click.mp3
+    - assets/sounds/swoosh.mp3
+    - assets/logored.png
+    - assets/sounds/poland.mp3
+    # Ensure this line is included if you have custom fonts
