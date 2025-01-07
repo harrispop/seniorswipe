@@ -1,0 +1,250 @@
+Category: Clothing
+1. **Name**: Vintage Leather Jacket
+   **Description**: Classic brown leather jacket with a timeless design. Slight wear adds character.
+   **Price**: $65.00
+   **Distance**: 4.8 miles
+Category: Clothing
+2. **Name**: Floral Summer Dress
+   **Description**: Light and breezy dress with vibrant floral patterns. Perfect for warm weather outings.
+   **Price**: $25.00
+   **Distance**: 2.3 miles
+Category: Clothing
+3. **Name**: Athletic Running Shoes
+   **Description**: High-performance running shoes, barely worn, and provide excellent support. Size 9.
+   **Price**: $40.00
+   **Distance**: 1.2 miles
+Category: Clothing
+4. **Name**: Oversized Knit Sweater
+   **Description**: Cozy oversized sweater in neutral tones. Ideal for fall and winter seasons.
+   **Price**: $30.00
+   **Distance**: 3.5 miles
+Category: Clothing
+5. **Name**: Denim Overalls
+   **Description**: Trendy and comfortable denim overalls, lightly worn. Perfect for casual wear.
+   **Price**: $35.00
+   **Distance**: 6.0 miles
+Category: Clothing
+6. **Name**: Formal Black Blazer
+   **Description**: Tailored black blazer, excellent for professional settings. Like new.
+   **Price**: $50.00
+   **Distance**: 1.8 miles
+Category: Clothing
+7. **Name**: Colorful Patchwork Scarf
+   **Description**: Handcrafted scarf with a unique patchwork design. Warm and stylish.
+   **Price**: $20.00
+   **Distance**: 2.7 miles
+Category: Clothing
+8. **Name**: Rainproof Hooded Jacket
+   **Description**: Lightweight rain jacket with adjustable hood and pockets. Great for outdoor adventures.
+   **Price**: $38.00
+   **Distance**: 5.5 miles
+Category: Clothing
+9. **Name**: Soft Cashmere Cardigan
+   **Description**: Luxuriously soft cashmere cardigan in a light beige tone. Lightly worn.
+   **Price**: $70.00
+   **Distance**: 4.1 miles
+Category: Clothing
+10. **Name**: Vintage Band T-Shirt
+    **Description**: Authentic vintage band tee from the 90s. Rare design in good condition.
+    **Price**: $45.00
+    **Distance**: 3.9 miles
+Category: Textbooks
+1. **Name**: Introduction to Psychology
+   **Description**: A foundational psychology textbook. Excellent for beginners. Minimal writing inside.
+   **Price**: $20.00
+   **Distance**: 2.8 miles
+Category: Textbooks
+2. **Name**: Organic Chemistry Workbook
+   **Description**: A workbook packed with practice problems and solutions for Organic Chemistry.
+   **Price**: $25.00
+   **Distance**: 3.6 miles
+Category: Textbooks
+3. **Name**: Modern World History
+   **Description**: Comprehensive textbook on world history from the 1500s to the present. Light highlighting.
+   **Price**: $30.00
+   **Distance**: 4.2 miles
+Category: Textbooks
+4. **Name**: Programming in Python
+   **Description**: A beginner-to-advanced guide on Python programming. Great for students and professionals.
+   **Price**: $40.00
+   **Distance**: 2.1 miles
+Category: Textbooks
+5. **Name**: Principles of Microeconomics
+   **Description**: Detailed exploration of microeconomic principles. Useful for introductory courses.
+   **Price**: $28.00
+   **Distance**: 1.9 miles
+Category: Textbooks
+6. **Name**: Art History: Volume II
+   **Description**: Covers the Renaissance to Modern Art. Features vibrant images and critical analyses.
+   **Price**: $35.00
+   **Distance**: 5.3 miles
+Category: Textbooks
+7. **Name**: Calculus for Engineers
+   **Description**: Advanced calculus textbook with engineering applications. Minor annotations inside.
+   **Price**: $50.00
+   **Distance**: 4.7 miles
+Category: Textbooks
+8. **Name**: Sociology: A Global Perspective
+   **Description**: Insightful textbook exploring sociology through global case studies. Nearly new.
+   **Price**: $22.00
+   **Distance**: 3.0 miles
+Category: Textbooks
+9. **Name**: Essentials of Anatomy and Physiology
+   **Description**: Detailed guide with illustrations, perfect for pre-med or biology students.
+   **Price**: $45.00
+   **Distance**: 2.4 miles
+Category: Textbooks
+10. **Name**: Environmental Science Today
+    **Description**: Updated edition focusing on contemporary environmental issues and solutions.
+    **Price**: $30.00
+    **Distance**: 6.2 miles
+Category: Furniture
+1. **Name**: Modern Glass Coffee Table
+   **Description**: Sleek coffee table with a tempered glass top and metal legs. Minimalist design.
+   **Price**: $120.00
+   **Distance**: 2.5 miles
+Category: Furniture
+2. **Name**: Loveseat Sofa
+   **Description**: Compact and comfortable loveseat in neutral gray. Perfect for apartments.
+   **Price**: $180.00
+   **Distance**: 4.0 miles
+Category: Furniture
+3. **Name**: Queen Size Bed Frame
+   **Description**: Sturdy wooden bed frame with a modern finish. Assembly instructions included.
+   **Price**: $150.00
+   **Distance**: 5.0 miles
+Category: Furniture
+4. **Name**: Adjustable Office Chair
+   **Description**: Ergonomic office chair with lumbar support and adjustable height. Lightly used.
+   **Price**: $85.00
+   **Distance**: 1.3 miles
+Category: Furniture
+5. **Name**: Rustic Bookshelf
+   **Description**: Wooden bookshelf with a rustic design. Five spacious shelves for storage.
+   **Price**: $100.00
+   **Distance**: 3.8 miles
+Category: Furniture
+6. **Name**: Foldable Dining Set
+   **Description**: Compact foldable dining table with four chairs. Great for small spaces.
+   **Price**: $140.00
+   **Distance**: 2.9 miles
+Category: Furniture
+7. **Name**: Vintage Armchair
+   **Description**: Comfortable armchair with a vintage floral print. A charming addition to any room.
+   **Price**: $75.00
+   **Distance**: 4.4 miles
+Category: Furniture
+8. **Name**: Standing Desk Converter
+   **Description**: Adjustable desk converter to transform your workspace. Like new.
+   **Price**: $60.00
+   **Distance**: 3.1 miles
+Category: Furniture
+9. **Name**: Solid Wood Nightstand
+   **Description**: Durable nightstand with a drawer and open shelf. Elegant dark wood finish.
+   **Price**: $50.00
+   **Distance**: 2.6 miles
+Category: Furniture
+10. **Name**: Outdoor Patio Set
+    **Description**: Weather-resistant patio table with four chairs. Perfect for outdoor dining.
+    **Price**: $250.00
+    **Distance**: 6.7 miles
+Category: Tutoring
+1. **Name**: Algebra Tutoring Services
+   **Description**: Friendly and patient tutor specializing in Algebra I and II. Flexible hours.
+   **Price**: $40.00 per hour
+   **Distance**: 2.0 miles
+Category: Tutoring
+2. **Name**: French Language Tutoring
+   **Description**: Native speaker offering beginner to advanced French lessons. Focus on conversation skills.
+   **Price**: $30.00 per hour
+   **Distance**: 3.5 miles
+Category: Tutoring
+3. **Name**: College Essay Writing Help
+   **Description**: Expert guidance on crafting compelling college essays. Over five years of experience.
+   **Price**: $45.00 per hour
+   **Distance**: 4.0 miles
+Category: Tutoring
+4. **Name**: AP Physics Tutoring
+   **Description**: Qualified tutor with a strong track record of success in AP Physics. Personalized plans.
+   **Price**: $50.00 per hour
+   **Distance**: 2.8 miles
+Category: Tutoring
+5. **Name**: Piano Lessons for Beginners
+   **Description**: Fun and engaging piano lessons tailored for beginners. Available weekdays.
+   **Price**: $35.00 per hour
+   **Distance**: 1.5 miles
+Category: Tutoring
+6. **Name**: GRE Prep Tutoring
+   **Description**: Experienced tutor with specialized strategies for acing the GRE. Proven success.
+   **Price**: $60.00 per hour
+   **Distance**: 5.2 miles
+Category: Tutoring
+7. **Name**: Coding Basics for Kids
+   **Description**: Fun and interactive coding lessons for children aged 8–12. Learn Python and Scratch.
+   **Price**: $25.00 per hour
+   **Distance**: 2.7 miles
+Category: Tutoring
+8. **Name**: SAT Reading & Writing Tutor
+   **Description**: Improve your SAT scores with targeted reading and writing practice. Proven methods.
+   **Price**: $50.00 per hour
+   **Distance**: 4.6 miles
+Category: Tutoring
+9. **Name**: Biology Tutoring
+   **Description**: In-depth tutoring in high school and college-level biology. Hands-on learning approach.
+   **Price**: $40.00 per hour
+   **Distance**: 3.2 miles
+Category: Tutoring
+10. **Name**: Public Speaking Coaching
+    **Description**: Learn to speak confidently with personalized public speaking coaching.
+    **Price**: $55.00 per hour
+    **Distance**: 6.0 miles
+Category: Notes
+1. **Name**: Calculus 101 Notes
+   **Description**: Detailed, handwritten notes covering all key concepts in Calculus 101.
+   **Price**: $15.00
+   **Distance**: 3.0 miles
+Category: Notes
+2. **Name**: Psychology Research Methods Notes
+   **Description**: Comprehensive notes on research methods, including summaries of key experiments.
+   **Price**: $12.00
+   **Distance**: 2.4 miles
+Category: Notes
+3. **Name**: US History Exam Notes
+   **Description**: Condensed notes with key dates, events, and figures for exam prep.
+   **Price**: $10.00
+   **Distance**: 4.5 miles
+Category: Notes
+4. **Name**: Organic Chemistry Reactions Guide
+   **Description**: Illustrated notes of all major organic chemistry reactions. Perfect for quick review.
+   **Price**: $20.00
+   **Distance**: 5.0 miles
+Category: Notes
+5. **Name**: Introduction to Economics Notes
+   **Description**: Detailed notes covering both micro and macroeconomic principles.
+   **Price**: $15.00
+   **Distance**: 1.8 miles
+Category: Notes
+6. **Name**: Physics Problem Solving Notes
+   **Description**: Step-by-step solutions and tips for solving common physics problems.
+   **Price**: $18.00
+   **Distance**: 3.7 miles
+Category: Notes
+7. **Name**: Literature Analysis Notes
+   **Description**: In-depth analyses of major works in English literature. Excellent for essay writing.
+   **Price**: $12.00
+   **Distance**: 2.1 miles
+Category: Notes
+8. **Name**: Statistics Cheat Sheet
+   **Description**: Handy cheat sheet with formulas, definitions, and example problems.
+   **Price**: $8.00
+   **Distance**: 4.2 miles
+Category: Notes
+9. **Name**: Anatomy Flashcards Notes
+   **Description**: Printable flashcards for anatomy terms and diagrams. Great for memorization.
+   **Price**: $10.00
+   **Distance**: 6.0 miles
+Category: Notes
+10. **Name**: AP Chemistry Study Notes
+    **Description**: Condensed study notes for AP Chemistry. Includes practice questions and tips.
+    **Price**: $15.00
+    **Distance**: 5.6 miles
