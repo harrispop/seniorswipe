@@ -1,284 +1,191 @@
 import 'package:flutter/material.dart';
-import 'package:latlong2/latlong.dart';
-import '../screens/models/item.dart';
-import '../screens/data/items.dart';
-import 'item_detail_screen.dart';
+import 'package:tcard/tcard.dart';
+import '../models/item.dart';
+import 'item_card.dart';
+import 'owner_info_dialog.dart';
+import 'dart:math';
+import 'package:confetti/confetti.dart';
+import 'dart:async'; // Import the Timer class
 
-class ExploreTab extends StatefulWidget {
+class SwipeCard extends StatefulWidget {
+  final List<Item> items;
+
+  SwipeCard({required this.items});
+
   @override
-  _ExploreTabState createState() => _ExploreTabState();
+  SwipeCardState createState() => SwipeCardState();
 }
 
-class _ExploreTabState extends State<ExploreTab> {
-  late Future<List<Item>> _futureItems;
-  String? _selectedCategory = 'Any'; // Default to "Any"
-  String _searchTerm = '';
-  double _minSliderPrice = 0.0;
-  double _maxSliderPrice = 1000.0;
-  double _minPrice = 0.0;
-  double _maxPrice = 1000.0;
-  String _sortOption = 'None';
+class SwipeCardState extends State<SwipeCard> {
+  late TCardController _controller;
+  late ConfettiController _confettiController;
+  bool isMatched = false;
+  int currentIndex = 0;
+  bool canSwipe = true; // Cooldown flag
 
-  final Map<String, Color> _categoryColors = {
-    'Clothing': Colors.pinkAccent.withOpacity(0.5),
-    'Textbooks': Colors.blueAccent.withOpacity(0.5),
-    'Furniture': Colors.greenAccent.withOpacity(0.5),
-    'Tutoring': Colors.orangeAccent.withOpacity(0.5),
-    'Notes': Colors.purpleAccent.withOpacity(0.5),
-  };
+  final List<String> names = [
+    'Alice Johnson', 'Bob Smith', 'Charlie Brown', 'David Williams', 'Eva Davis',
+    'Frank Miller', 'Grace Wilson', 'Henry Moore', 'Isla Taylor', 'Jack Anderson',
+    'Kara Thomas', 'Liam Harris', 'Mia Martin', 'Noah Thompson', 'Olivia White'
+  ];
 
   @override
   void initState() {
     super.initState();
-    _futureItems = loadItems();
-    _futureItems.then((items) {
-      if (items.isNotEmpty) {
-        setState(() {
-          _minSliderPrice =
-              items.map((item) => item.price).reduce((a, b) => a < b ? a : b);
-          _maxSliderPrice =
-              items.map((item) => item.price).reduce((a, b) => a > b ? a : b);
-          _minPrice = _minSliderPrice;
-          _maxPrice = _maxSliderPrice;
-        });
-      }
+    _controller = TCardController();
+    _confettiController = ConfettiController(duration: Duration(seconds: 1));
+    shuffleItems();
+  }
+
+  void shuffleItems() {
+    setState(() {
+      widget.items.shuffle();
     });
   }
 
-  List<Item> _filterItems(List<Item> items) {
-    List<Item> filteredItems = items;
+  void handleSwipe(int index, SwipDirection direction) {
+    setState(() {
+      currentIndex = index;
+    });
 
-    if (_selectedCategory != null && _selectedCategory != 'Any') {
-      filteredItems =
-          filteredItems.where((item) => item.category == _selectedCategory)
-              .toList();
+    // Only match if swiped right
+    if (direction == SwipDirection.Right) {
+      // 20% chance to match
+      if (Random().nextDouble() < 0.2) {
+        setState(() {
+          isMatched = true;
+        });
+        _confettiController.play();
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text('Matched with ${widget.items[index].name}!'),
+            backgroundColor: Colors.green,
+          ),
+        );
+      } else {
+        setState(() {
+          isMatched = false;
+        });
+      }
     }
-
-    if (_searchTerm.isNotEmpty) {
-      filteredItems = filteredItems.where((item) =>
-          item.name.toLowerCase().contains(_searchTerm.toLowerCase())).toList();
-    }
-
-    filteredItems = filteredItems.where((item) => item.price >= _minPrice &&
-        item.price <= _maxPrice).toList();
-
-    switch (_sortOption) {
-      case 'Price Asc':
-        filteredItems.sort((a, b) => a.price.compareTo(b.price));
-        break;
-      case 'Price Desc':
-        filteredItems.sort((a, b) => b.price.compareTo(a.price));
-        break;
-      case 'Distance Asc':
-        filteredItems.sort((a, b) => a.distance.compareTo(b.distance));
-        break;
-      case 'Distance Desc':
-        filteredItems.sort((a, b) => b.distance.compareTo(a.distance));
-        break;
-    }
-
-    return filteredItems;
   }
 
-  // Inside the _ExploreTabState widget
+  void showOwnerInfoDialog(Item item) {
+    showDialog(
+      context: context,
+      builder: (context) {
+        return OwnerInfoDialog(
+          ownerName: item.owner,
+          listingsCount: Random().nextInt(50) + 1,
+          ratingsCount: item.ratings,
+          avgRating: item.avgRating, // Show avgRating here
+          onSendMessage: () {
+            Navigator.of(context).pop();
+            // Handle message sending
+          },
+        );
+      },
+    );
+  }
+
+  void swipeRight() {
+    if (canSwipe) {
+      _controller.forward(direction: SwipDirection.Right);
+      startCooldown();
+    }
+  }
+
+  void swipeLeft() {
+    if (canSwipe) {
+      _controller.forward(direction: SwipDirection.Left);
+      startCooldown();
+    }
+  }
+
+  void startCooldown() {
+    setState(() {
+      canSwipe = false;
+    });
+    Timer(Duration(milliseconds: 500), () {
+      setState(() {
+        canSwipe = true;
+      });
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text('Search'),
-        automaticallyImplyLeading: false, // Removes the back arrow
-      ),
-      body: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          // Filters Section
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: SingleChildScrollView(
-              scrollDirection: Axis.horizontal,
-              child: Row(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  // Categories Dropdown
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text('Categories', style: TextStyle(
-                          fontWeight: FontWeight.bold, fontSize: 14)),
-                      SizedBox(
-                        width: 120, // Adjust width to your preference
-                        child: DropdownButton<String>(
-                          value: _selectedCategory,
-                          isExpanded: true,
-                          icon: Icon(Icons.category),
-                          underline: Container(height: 1, color: Colors.grey),
-                          onChanged: (String? newValue) {
-                            setState(() {
-                              _selectedCategory = newValue;
-                            });
-                          },
-                          items: ['Any', ..._categoryColors.keys].map((
-                              String category) {
-                            return DropdownMenuItem<String>(
-                              value: category,
-                              child: Text(category),
-                            );
-                          }).toList(),
-                        ),
-                      ),
-                    ],
-                  ),
-
-                  SizedBox(width: 16), // Space between filters
-
-                  // Sort By Dropdown
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text('Sort By:', style: TextStyle(
-                          fontWeight: FontWeight.bold, fontSize: 14)),
-                      SizedBox(
-                        width: 120, // Adjust width to your preference
-                        child: DropdownButton<String>(
-                          value: _sortOption,
-                          isExpanded: true,
-                          icon: Icon(Icons.sort),
-                          underline: Container(height: 1, color: Colors.grey),
-                          onChanged: (String? newValue) {
-                            setState(() {
-                              _sortOption = newValue!;
-                            });
-                          },
-                          items: <String>[
-                            'None',
-                            'Price Asc',
-                            'Price Desc',
-                            'Distance Asc',
-                            'Distance Desc'
-                          ]
-                              .map<DropdownMenuItem<String>>((String value) {
-                            return DropdownMenuItem<String>(
-                              value: value,
-                              child: Text(value),
-                            );
-                          }).toList(),
-                        ),
-                      ),
-                    ],
-                  ),
-
-                  SizedBox(width: 16), // Space between filters
-
-                  // Price Range Slider
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text('Price Range', style: TextStyle(
-                          fontWeight: FontWeight.bold, fontSize: 14)),
-                      SizedBox(
-                        width: 220, // Adjust width for slider
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          children: [
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                Text('\$${_minPrice.toStringAsFixed(0)}'),
-                                Text('\$${_maxPrice.toStringAsFixed(0)}'),
-                              ],
-                            ),
-                            RangeSlider(
-                              values: RangeValues(_minPrice, _maxPrice),
-                              min: _minSliderPrice,
-                              max: _maxSliderPrice,
-                              onChanged: (RangeValues values) {
-                                setState(() {
-                                  _minPrice = values.start;
-                                  _maxPrice = values.end;
-                                });
-                              },
-                              labels: RangeLabels(
-                                '\$${_minPrice.toStringAsFixed(0)}',
-                                '\$${_maxPrice.toStringAsFixed(0)}',
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ],
-                  ),
-                ],
-              ),
+    return Stack(
+      children: [
+        Center(
+          child: TCard(
+            controller: _controller,
+            size: Size(350, 600),
+            cards: widget.items.map((item) {
+              return ItemCard(
+                item: item,
+                onTap: () => showOwnerInfoDialog(item),
+              );
+            }).toList(),
+            onForward: (index, info) {
+              handleSwipe(index, info.direction);
+              if (index == widget.items.length - 1) {
+                shuffleItems();
+                _controller.reset();
+              }
+            },
+            onBack: (index, info) {
+              setState(() {
+                currentIndex = index;
+              });
+            },
+            onEnd: () {
+              // Handle end of card stack if needed
+            },
+          ),
+        ),
+        Align(
+          alignment: Alignment.center,
+          child: ConfettiWidget(
+            confettiController: _confettiController,
+            blastDirectionality: BlastDirectionality.explosive,
+            shouldLoop: false,
+            numberOfParticles: 100, // Increase the number of particles
+          ),
+        ),
+        Positioned(
+          bottom: 20,
+          left: 20,
+          child: Opacity(
+            opacity: 0.8,
+            child: FloatingActionButton(
+              onPressed: swipeLeft,
+              child: Icon(Icons.close, color: Colors.red),
+              backgroundColor: Colors.white,
+              shape: CircleBorder(side: BorderSide(color: Colors.red)),
             ),
           ),
-
-          // Search Bar
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: TextField(
-              decoration: InputDecoration(
-                labelText: 'Search by name',
-                border: OutlineInputBorder(),
-              ),
-              onChanged: (value) {
-                setState(() {
-                  _searchTerm = value;
-                });
-              },
+        ),
+        Positioned(
+          bottom: 20,
+          right: 20,
+          child: Opacity(
+            opacity: 0.8,
+            child: FloatingActionButton(
+              onPressed: swipeRight,
+              child: Icon(Icons.favorite, color: Colors.green),
+              backgroundColor: Colors.white,
+              shape: CircleBorder(side: BorderSide(color: Colors.green)),
             ),
           ),
-
-          // Items List
-          Expanded(
-            child: FutureBuilder<List<Item>>(
-              future: _futureItems,
-              builder: (context, snapshot) {
-                if (snapshot.connectionState == ConnectionState.waiting) {
-                  return Center(child: CircularProgressIndicator());
-                } else if (snapshot.hasError) {
-                  return Center(child: Text('Error loading listings'));
-                } else {
-                  final items = _filterItems(snapshot.data!);
-
-                  if (items.isEmpty) {
-                    return Center(child: Text('No items found'));
-                  }
-
-                  return ListView.builder(
-                    itemCount: items.length,
-                    itemBuilder: (context, index) {
-                      final item = items[index];
-                      return ListTile(
-                        leading: Container(
-                          width: 24,
-                          height: 24,
-                          color: _categoryColors[item.category],
-                          child: Image.asset(
-                              item.imageUrl, fit: BoxFit.contain),
-                        ),
-                        title: Text(item.name),
-                        subtitle: Text(item.category == 'Tutoring' ? '\$${item
-                            .price} per hour' : '\$${item.price}'),
-                        onTap: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) =>
-                              ItemDetailScreen(
-                                item: item,
-                                location: LatLng(25.0418, 121.5331), // Default location (NTUT coordinates),
-                            ),
-                          ));
-                        },
-                      );
-                    },
-                  );
-                }
-              },
-            ),
-          ),
-        ],
-      ),
+        ),
+      ],
     );
+  }
+
+  @override
+  void dispose() {
+    _confettiController.dispose();
+    super.dispose();
   }
 }
